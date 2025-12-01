@@ -1,0 +1,59 @@
+\documentclass {beamer}
+\usetheme {Darmstadt}
+\usecolortheme {spruce}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+
+\title {Predict Covid-19 Spread from April-September in 2021 by using ODE and Bisection Method}
+\author {Charita Ampharpai}
+\institute {Mahidol University International College}
+\date {\today}
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Introduction}
+    \begin{itemize}
+        \item Let $N$ be the population in 2021 = 70,000,000 people.
+        
+        \item Let $\gamma$ be the recovery rate: 
+        $$ \gamma = 1/\text{recovery days} $$
+        Since recovery $\approx 8$ days $\Rightarrow \gamma = 1/8 = 0.125$.
+        
+        \item Let $\beta$ be the infection rate (speed of spread) $\rightarrow R_t = \beta / \gamma$.
+        
+        \item To find the best $\beta$, I used SSE to minimize the error:
+        $$ \text{SSE}(\beta) = \sum_{t=0}^{n} (I_{\text{real}}(t) - I_{\text{model}}(t,\beta))^2 $$
+        
+        \textbf{Where:}
+        \begin{itemize}
+            \small % Makes the text slightly smaller to fit better
+            \item \textbf{SSE($\beta$):} Total sum of squared errors.
+            \item $I_{\text{real}}(t)$: Number of infected people on day $t$ (Red dot).
+            \item $I_{\text{model}}(t,\beta)$: Number of infected people predicted by the equation on day $t$ (Blue line).
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Data}
+    \begin{itemize}
+        \item Use the Data from Kaggle: \\
+        \url{https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset}
+        
+        \vspace{0.5cm} 
+        
+        \item Calculate the active cases:
+        $$ \text{Active} = \text{Confirmed} - \text{Deaths} - \text{Recovered} $$
+    \end{itemize}
+\end{frame}
+
+
+
+
+\end{document}
